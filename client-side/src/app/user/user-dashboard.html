@@ -1,0 +1,41 @@
+<div class="container">
+    <div class="panel panel-default ">
+        <div class="alert alert-success">
+            <span class="lead">
+            Welcome {{user.name}}
+            </span>
+        </div>
+
+        <br/>
+
+        <form class="form">
+            <div class="row">
+                <div class="col col-md-6">
+                    <input type="text" name="id" ng-model="user.id">
+                </div>
+                <div class="col col-md-6">
+                    <input type="text" name="username" ng-model="user.username"> 
+                </div>
+            </div>
+            <div class="row">
+                <div class="col col-md-6">
+                    <input type="text" name="role" ng-model="user.role">
+                </div>
+                <div class="col col-md-6">
+                    <input type="text" name="enabled" ng-model="user.enabled"> 
+                </div>
+            </div>
+            <div class="row">
+                <div class="col col-md-6">
+                    <input type="text" name="createTime" ng-model="user.createTime">
+                </div>
+                <div class="col col-md-6">
+                    <input type="text" name="updateTime" ng-model="user.updateTime"> 
+                </div>
+            </div>
+        </form>
+    
+        <button class="btn btn-info" ng-click=login()>Log in</button>
+    
+    </div>
+</div>

@@ -1,0 +1,5 @@
+[
+    "./src/css/**/*.css",
+    "./node_modules/bootstrap/dist/css/bootstrap.css",
+    "./src/vendor/bootstrap/bootstrap.css"
+]

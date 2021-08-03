@@ -7,7 +7,7 @@
         init();
 
         function init() {   
-            $location.path('/');
+           // $location.path('/');
         }
 
         $scope.login = function() {

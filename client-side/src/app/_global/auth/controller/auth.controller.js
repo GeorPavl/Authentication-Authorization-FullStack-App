@@ -13,7 +13,6 @@
         $scope.loginUser = function() {
             authService.authenticate($scope.credentials, function() {
                 if ($rootScope.authenticated) {
-                    console.log($rootScope.authenticated);
                     if ($rootScope.principal.role === "ROLE_ADMIN") {
                         $location.path("/admin");
                     } else {
@@ -21,7 +20,6 @@
                     }
                     $scope.loginerror = false;
                 } else {
-                    console.log($rootScope.authenticated);
                     $location.path("/login");
                     $scope.loginerror = true;
                 }

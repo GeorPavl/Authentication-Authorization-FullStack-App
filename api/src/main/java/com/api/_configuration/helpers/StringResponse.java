@@ -1,4 +1,4 @@
-package com.api._configuration;
+package com.api._configuration.helpers;
 
 import lombok.Data;
 

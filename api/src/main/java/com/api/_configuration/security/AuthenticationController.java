@@ -1,6 +1,7 @@
 package com.api._configuration.security;
 
 import com.api._configuration.jwt.JwtTokenProvider;
+import com.api.dto.UserDTO;
 import com.api.model.User;
 import com.api.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,14 +26,14 @@ public class AuthenticationController {
     private UserService userService;
 
     @PostMapping("/api/user/registration")
-    public ResponseEntity<?> register(@RequestBody User user) {
+    public ResponseEntity<?> register(@RequestBody UserDTO userDTO) {
         // TODO: 7/28/2021
 //        if (userService.findByUsername(user.getUsername()) != null) {
 //            return new ResponseEntity<>(HttpStatus.CONFLICT);
 //        }
-        user.setRole("ROLE_USER");
-        user.setEnabled(true);
-        return new ResponseEntity<>(userService.save(user), HttpStatus.CREATED);
+        userDTO.setRole("ROLE_USER");
+        userDTO.setEnabled(true);
+        return new ResponseEntity<>(userService.save(userDTO), HttpStatus.CREATED);
     }
 
     @GetMapping("/login")
@@ -49,6 +50,6 @@ public class AuthenticationController {
         }
         user.get().setToken(tokenProvider.generateToken(authenticationToken));
 
-        return new ResponseEntity<>(user, HttpStatus.OK);
+        return new ResponseEntity<>(new UserDTO(user.get()), HttpStatus.OK);
     }
 }

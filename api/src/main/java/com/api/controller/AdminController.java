@@ -1,6 +1,6 @@
 package com.api.controller;
 
-import com.api._configuration.StringResponse;
+import com.api._configuration.helpers.StringResponse;
 import com.api.model.User;
 import com.api.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +38,7 @@ public class AdminController {
 
     @GetMapping("/api/admin/user-all")
     public ResponseEntity<?> findAllUsers(){
-        return new ResponseEntity<>(userService.findAll(), HttpStatus.OK);
+        return new ResponseEntity<>(userService.list(), HttpStatus.OK);
     }
 
     @GetMapping("/api/admin/user-number")

@@ -55,7 +55,3 @@ gulp.task('start', function() {
     gulp.watch(['./src/**/*.js'], ['js']);
     gulp.watch(['./src/**/*.html'], ['html']);
 });
-
-gulp.task('browserSyncReload', function() {
-    browserSync.reload();
-});

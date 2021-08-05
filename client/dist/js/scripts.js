@@ -69124,6 +69124,7 @@ module.exports = function(Chart) {
 
         $stateProvider.state({
             name: 'app.admin-dashboard',
+            url: '/admin',
             templateUrl: 'app/admin-dashboard/admin-dashboard.tpl.html',
             abstract: true,
             controller: 'adminDashboardController'  
@@ -69131,8 +69132,14 @@ module.exports = function(Chart) {
 
         $stateProvider.state({
             name: 'app.admin-dashboard.index',
-            url: '/admin',
+            url: '/index',
             templateUrl: 'app/admin-dashboard/admin-dashboard-index.tpl.html'
+        });
+
+        $stateProvider.state({
+            name: 'app.admin-dashboard.user-list',
+            url: '/user-list',
+            templateUrl: 'app/admin-dashboard/admin-dashboard-user-list.tpl.html'
         });
 
     }
@@ -69166,6 +69173,11 @@ module.exports = function(Chart) {
 
     config.$inject = ['$stateProvider'];
     
+})();
+(function() {
+
+    angular.module('app.us', []);
+
 })();
 (function() {
 
@@ -69234,7 +69246,8 @@ module.exports = function(Chart) {
         'app.global',
         'app.home',
         'app.admin-dashboard',
-        'app.user-dashboard'
+        'app.user-dashboard',
+        'app.us'
     ]).config(config);
 
     function config($stateProvider, $locationProvider) {
@@ -69270,16 +69283,43 @@ module.exports = function(Chart) {
 
     angular.module('app.admin-dashboard').controller('adminDashboardController', adminDashboardController);
 
-    function adminDashboardController($scope) {
-        $scope.contacts = [
-            {
-                id: 1,
-                name: "Giorgos"
+    function adminDashboardController($scope, $state, userService) {
+
+        $scope.users = [];
+
+        init();
+
+        function init() {
+            getUsers();
+        }
+
+        function getUsers() {
+            userService.getUsers().$promise
+                .then(function(response) {
+                    $scope.users = response;
+                    console.log(response);
+                })
+                .catch(function(error) {
+                    console.log(error);
+                });
+        }
+
+        $scope.deleteUser = function(id) {
+            var result = confirm("Are you sure?");
+            if (result) {
+                userService.deleteUser(id).$promise
+                .then(function(response) {
+                    console.log("delete done");
+                })
+                .catch(function(error) {
+                    console.log(error);
+                });
             }
-        ]
+        }
+
     }
 
-    adminDashboardController.$inject = ['$scope'];
+    adminDashboardController.$inject = ['$scope', '$state', 'userService'];
 
 })();
 (function() {
@@ -69404,6 +69444,83 @@ module.exports = function(Chart) {
     homeService.$inject = ['homeFactory'];
 
 })();
+(function () {
+
+    angular.module('app.us').constant('userConsts', {
+        listUrl: '/user/list',
+        getUrl: '/user/get',
+        saveUrl: '/user/save',
+        deleteUrl: '/user/delete'
+    });
+
+})();
+(function() {
+
+    angular.module('app.us').factory('userFactory', userFactory);
+
+    function userFactory($resource, $rootScope, headerService, userConsts) {
+        
+        return $resource(null, null, {
+            'list': {
+                url: $rootScope.baseUrl + userConsts.listUrl,
+                method: 'GET',
+                isArray: true,
+                headers: headerService.getHeadersWithAuth()
+            },
+            'get': {
+                url: $rootScope.baseUrl + userConsts.getUrl,
+                method: 'GET',
+                // headers: headerService.getHeadersWithAuth()
+            },
+            'save': {
+                url: $rootScope.baseUrl + userConsts.saveUrl,
+                method: 'POST',
+                // headers: headerService.getHeadersWithAuth()
+            },
+            'delete': {
+                url: $rootScope.baseUrl + userConsts.deleteUrl,
+                method: 'DELETE',
+                // headers: headerService.getHeadersWithAuth()
+            }
+        });
+
+    }
+
+    userFactory.$inject = ['$resource', '$rootScope', 'headerService', 'userConsts']
+
+})();
+(function() {
+
+    angular.module('app.us').service('userService', userService);
+
+    function userService(userFactory) {
+        return {
+            getUsers: getUsers,
+            getUser: getUser,
+            saveUser: saveUser,
+            deleteUser: deleteUser
+        }
+
+        function getUsers() {
+            return userFactory.list({});
+        }
+
+        function getUser(id) {
+            return userFactory.get({id}, null);
+        }
+
+        function saveUser(user) {
+            return userFactory.save({}, user);
+        }
+
+        function deleteUser(id) {
+            return userFactory.delete({id}, null);
+        }
+    }
+
+    userService.$inject = ['userFactory'];
+
+})();
 (function() {
 
     angular.module('app.user-dashboard').controller('userDashboardController', userDashboardController);
@@ -69440,10 +69557,6 @@ module.exports = function(Chart) {
             replace: true,
             scope: {},
             link: function(scope, state) {
-                
-                scope.logout = function() {
-                    state.go('app.global.logout');
-                };
                 
             }
         };

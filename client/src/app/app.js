@@ -10,7 +10,8 @@
         'app.global',
         'app.home',
         'app.admin-dashboard',
-        'app.user-dashboard'
+        'app.user-dashboard',
+        'app.us'
     ]).config(config);
 
     function config($stateProvider, $locationProvider) {

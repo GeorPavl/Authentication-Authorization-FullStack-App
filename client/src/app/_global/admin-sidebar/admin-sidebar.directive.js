@@ -11,10 +11,6 @@
             scope: {},
             link: function(scope, state) {
                 
-                scope.logout = function() {
-                    state.go('app.global.logout');
-                };
-                
             }
         };
 

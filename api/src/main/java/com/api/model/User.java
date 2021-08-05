@@ -37,7 +37,16 @@ public class User {
     @Column(name = "update_time")
     private Date updateTime;
 
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Person person;
+
     //Not persistent. There is no column on database table.
     @Transient
     private String token;
+
+    // bi-directional method
+    public void addPerson(Person person) {
+        this.person = person;
+        person.setUser(this);
+    }
 }

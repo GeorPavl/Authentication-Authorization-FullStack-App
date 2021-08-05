@@ -1,15 +1,16 @@
 package com.api.controller;
 
 import com.api._configuration.jwt.JwtTokenProvider;
+import com.api.dto.UserDTO;
 import com.api.model.User;
 import com.api.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 public class UserController {
@@ -19,6 +20,23 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @GetMapping("/user/list")
+    public ResponseEntity<List<?>> listUsers() {
+        if (userService.list().isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        List<UserDTO> dtoList = new ArrayList<>();
+        for (User user : userService.list()) {
+            dtoList.add(new UserDTO(user));
+        }
+        return new ResponseEntity<>(dtoList, HttpStatus.OK);
+    }
+
+    @PostMapping("/user/save")
+    public ResponseEntity<?> saveUser(@RequestBody UserDTO userDTO) {
+        return new ResponseEntity<>(new UserDTO(userService.save(userDTO)), HttpStatus.CREATED);
+    }
 
     @GetMapping("/user/get")
     public ResponseEntity<?> getUser(@RequestParam Long id) {

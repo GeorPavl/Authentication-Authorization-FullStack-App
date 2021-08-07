@@ -12,15 +12,15 @@
         $stateProvider.state({
             name: 'app.global.login',
             url: '/login',
-            templateUrl: 'app/_global/auth/views/login.html',
+            templateUrl: './src/app/_global/authentication/login.html',
             controller: 'authController'
         });
 
         $stateProvider.state({
             name: 'app.global.logout',
             url: '/logout',
-            templateUrl: 'app/_global/auth/views/login.html',
-            controller: 'logoutController'
+            templateUrl: './src/app/_global/authentication/login.html',
+            controller: 'authController'
         });
 
     }

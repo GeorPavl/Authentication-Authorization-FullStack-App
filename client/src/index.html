@@ -1,24 +1,22 @@
-<html lang="en" ng-app="app">
-<head>
-    <title>Document</title>
-    <base href="/">
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Start Styles -->
-    <link rel="stylesheet" href="css/main.css">
-    <!-- End Styles -->
-</head>
-<body>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title ng-bind="$root.title"></title>
+        <base href="/" />
+        <link rel="icon" type="image/png" href="../favicon.png"/>
+        
+        <link rel="stylesheet" href="./styles/vendor-styles.css" />
+        <link rel="stylesheet" href="./styles/app-styles.css" />
+        
+        <script src="./vendor.js"></script>
+        
+        <!-- inject:js -->
+        <!-- endinject -->
+    </head>
+    <body>
+        
+        <div ui-view class="fade-in-up"></div>
 
-    <div ng-show="isAuthenticated">
-        <header-directive></header-directive>
-    </div>
-
-    <div ui-view class="slide-animation"></div>
-
-    <!-- Start Scripts -->
-    <script src="js/scripts.js"></script>
-    <!-- End Scripts -->
-</body>
+    </body>
 </html>

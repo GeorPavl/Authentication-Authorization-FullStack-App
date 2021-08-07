@@ -14,17 +14,17 @@
             'get': {
                 url: $rootScope.baseUrl + userConsts.getUrl,
                 method: 'GET',
-                // headers: headerService.getHeadersWithAuth()
+                headers: headerService.getHeadersWithAuth()
             },
             'save': {
                 url: $rootScope.baseUrl + userConsts.saveUrl,
                 method: 'POST',
-                // headers: headerService.getHeadersWithAuth()
+                headers: headerService.getHeadersWithAuth()
             },
             'delete': {
                 url: $rootScope.baseUrl + userConsts.deleteUrl,
                 method: 'DELETE',
-                // headers: headerService.getHeadersWithAuth()
+                headers: headerService.getHeadersWithAuth()
             }
         });
 

@@ -6,7 +6,7 @@
         
         return {
             restrict: 'E',
-            templateUrl: 'app/_global/admin-sidebar/admin-sidebar.tpl.html',
+            templateUrl: './src/app/_global/admin-sidebar/admin-sidebar.tpl.html',
             replace: true,
             scope: {},
             link: function(scope, state) {

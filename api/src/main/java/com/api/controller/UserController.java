@@ -44,7 +44,7 @@ public class UserController {
         if (user == null) {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(user, HttpStatus.OK);
+        return new ResponseEntity<>(new UserDTO(user), HttpStatus.OK);
     }
 
     @DeleteMapping("/user/delete")

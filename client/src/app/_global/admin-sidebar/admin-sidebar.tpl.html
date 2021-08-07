@@ -6,21 +6,13 @@
         <ul class="list-unstyled components">
             <p>Dummy Heading</p>
             <li class="active">
-                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>
-                <ul class="collapse list-unstyled" id="homeSubmenu">
-                    <li>
-                        <a href="#">Home 1</a>
-                    </li>
-                    <li>
-                        <a href="#">Home 2</a>
-                    </li>
-                    <li>
-                        <a href="#">Home 3</a>
-                    </li>
-                </ul>
+                <a ui-sref="app.home" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>
             </li>
             <li>
                 <a class="nav-link" ui-sref="app.admin-dashboard.user-list">Users</a>
+            </li>
+            <li>
+                <a class="nav-link" ui-sref="app.admin-dashboard.user-view">Create User</a>
             </li>
         <ul class="list-unstyled CTAs">
             <li>

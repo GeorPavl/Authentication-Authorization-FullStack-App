@@ -6,7 +6,7 @@
         
         return {
             restrict: 'E',
-            templateUrl: 'app/_global/header-directive/header.html',
+            templateUrl: './src/app/_global/header-directive/header.html',
             replace: true,
             scope: {},
             link: function(scope, state) {

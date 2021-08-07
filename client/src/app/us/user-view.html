@@ -1,0 +1,34 @@
+<div>
+    <form>
+        <div class="form-group">
+            <label for="userId">ID</label>
+            <input type="text" name="userId" id="userId" placeholder="User ID" ng-model="user.id">
+        </div>
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username" placeholder="User username" ng-model="user.username">
+        </div>
+        <div class="form-group" ng-hide="isEditable">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" placeholder="User password" ng-model="user.password">
+        </div>
+        <div class="form-group">
+            <label for="role">Role</label>
+            <input type="text" name="role" id="role" placeholder="User role" ng-model="user.role">
+        </div>
+        </div>
+        <div class="form-group">
+            <label for="role">Enabled</label>
+            <input type="text" name="enabled" id="enabled" placeholder="User enabled" ng-model="user.enabled">
+        </div>
+        <div class="form-group" ng-hide="!isEditable">
+            <label for="createTime">Create Time</label>
+            <input type="text" name="createTime" id="createTime" placeholder="User createTime" ng-model="user.createTime">
+        </div>
+        <div class="form-group" ng-hide="!isEditable">
+            <label for="updateTime">Update Time</label>
+            <input type="text" name="updateTime" id="updateTime" placeholder="User updateTime" ng-model="user.updateTime">
+        </div>
+        <button class="btn btn-info" ng-hide="!isEditable" ng-click="saveUser()">Edit</button>
+    </form>
+</div>

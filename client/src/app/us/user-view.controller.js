@@ -8,6 +8,28 @@
 
         $scope.isEditable = false;
 
+        $scope.enabledOptions = [
+            {
+                title: 'Enabled',
+                value: true
+            },
+            {
+                title: 'Disabled',
+                value: false
+            }
+        ];
+
+        $scope.roleOptions = [
+            {
+                title: 'Administrator',
+                value: 'ROLE_USER'
+            },
+            {
+                title: 'User',
+                value: 'ROLE_USER'
+            }
+        ];
+
         init();
 
         function init() {

@@ -2,7 +2,7 @@
 
     angular.module('app.global').service('authService', authService); 
 
-    function authService($http, $rootScope, $location, headerService) {
+    function authService($window, $http, $rootScope, $location, headerService) {
 
         return {
             authenticate: authenticate,
@@ -18,16 +18,15 @@
             })
             .then(function(response) {
                 if (response.data) {
-                    $rootScope.authenticated = true;
-                    $rootScope.user = response.data;
-                    $rootScope.user.token = response.data.token;
+                    $window.localStorage.setItem('user',JSON.stringify(response.data));
+                    $window.localStorage.setItem('authenticated', true);
                 } else {
-                    $rootScope.authenticated = false;
+                    $window.localStorage.setItem('authenticated', false);
                     $location.path("/");
                 }
                 callback && callback();
             }, function() {
-                $rootScope.authenticated = false;
+                $window.localStorage.setItem('authenticated', false);
                 callback && callback();
             });
 
@@ -36,14 +35,16 @@
         function logout() {
             
             $http.post($rootScope.baseUrl + '/logout', {}).finally(function() {
-                $rootScope.authenticated = false;
+                $window.localStorage.setItem('authenticated', false);
+                $window.localStorage.remove('user', false);
+
                 $location.path("/");
             });
 
         }
 
         function isLoggedIn() {
-            if ($rootScope.authenticated) {
+            if (localStorage.getItem('authenticated')) {
                 return true;
             } 
             else {
@@ -52,8 +53,8 @@
         }
 
         function getLoggedInUser() {
-            if ($rootScope.user) {
-                return $rootScope.user;
+            if (localStorage.getItem('user')) {
+                return JSON.parse(localStorage.getItem('user'));
             } 
             else {
                 return {};
@@ -62,6 +63,6 @@
         
     }
 
-    authService.$inject = ['$http', '$rootScope', '$location', 'headerService'];
+    authService.$inject = ['$window', '$http', '$rootScope', '$location', 'headerService'];
     
 })();

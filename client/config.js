@@ -6,6 +6,7 @@ module.exports = {
             profile: process.env.DEVELOPMENT_PROFILE,
             baseUrl: process.env.DEVELOPMENT_BASE_URL,
             frontUrl: process.env.DEVELOPMENT_FRONT_URL,
+            user: process.env.USER,
             sso:{
               url: process.env.DEVELOPMENT_SSO_URL,
               authorize: process.env.DEVELOPMENT_SSO_AUTHORIZE,

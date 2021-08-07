@@ -30,7 +30,7 @@
 
         $stateProvider.state({
             name: 'app.admin-dashboard.user-view',
-            url: '/user-view',
+            url: '/user-view/:id',
             templateUrl: './src/app/us/user-view.html',
             controller: 'userViewController',
             params: {

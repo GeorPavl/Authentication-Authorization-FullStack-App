@@ -2,7 +2,7 @@
 
     angular.module('app.global').service('headerService', headerService);
 
-    function headerService($rootScope) {
+    function headerService() {
 
         return {
             getHeadersWithAuth: getHeadersWithAuth,
@@ -10,7 +10,7 @@
         }
 
         function getHeadersWithAuth() {
-            var user = $rootScope.user
+            var user = JSON.parse(localStorage.getItem('user'));
             var headers = {};
 
             if (user) {
@@ -31,7 +31,5 @@
         }
 
     }
-
-    headerService.$inject = ['$rootScope'];
 
 })();

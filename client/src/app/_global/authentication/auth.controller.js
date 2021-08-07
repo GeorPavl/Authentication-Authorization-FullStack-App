@@ -12,8 +12,9 @@
 
         $scope.loginUser = function() {
             authService.authenticate($scope.credentials, function() {
-                if ($rootScope.authenticated) {
-                    if ($rootScope.user.role === "ROLE_ADMIN") {
+                var user = JSON.parse(localStorage.getItem('user'));
+                if (user) {
+                    if (user.role === "ROLE_ADMIN") {
                         $state.go('app.admin-dashboard.index');
                     } else {
                         $state.go('app.user-dashboard.index')

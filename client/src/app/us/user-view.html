@@ -1,34 +1,85 @@
-<div>
-    <form>
-        <div class="form-group">
-            <label for="userId">ID</label>
-            <input type="text" name="userId" id="userId" placeholder="User ID" ng-model="user.id">
+<div class="container view-container">
+    <form class="form">
+        
+        <div class="row">
+
+            <div class="col-md-6">
+                <div class="row mb-3" ng-hide="!isEditable" disabled>
+                    <label for="userId" class="col-sm-4 col-form-label">ID</label>
+                    <div class="col-sm-6">
+                      <input type="text" class="form-control" id="userId" placeholder="User ID" ng-model="user.id">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="username" class="col-sm-4 col-form-label">Username</label>
+                    <div class="col-sm-6">
+                      <input type="text" class="form-control" id="username" placeholder="User username" ng-model="user.username">
+                    </div>
+                </div>
+                <div class="row mb-3" ng-hide="!isEditable" disabled>
+                    <label for="password" class="col-sm-4 col-form-label">Password</label>
+                    <div class="col-sm-6">
+                      <input type="password" class="form-control" id="password" placeholder="User password" ng-model="user.password">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="role" class="col-sm-4 col-form-label">Role</label>
+                  <div class="col-sm-6">
+                    <select class="form-select" id="role" aria-label="Default select example" ng-model="user.role">
+                      <option ng-repeat= "x in roleOptions" value="{{x.value}}">{{x.title}}</option>
+                    </select> 
+                  </div>
+              </div>
+              <div class="row mb-3">
+                  <label for="enabled" class="col-sm-4 col-form-label">Enabled</label>
+                  <div class="col-sm-6">
+                    <select class="form-control" ng-model="user.enabled" name="personGender" ng-options="item.value for item in enabledOptions">
+                      <option value="">{{item.title}}</option>
+                  </select>        
+                  </div>
+              </div>
+              <div class="row mb-3" ng-hide="!isEditable">
+                  <label for="createTime" class="col-sm-4 col-form-label">Create Time</label>
+                  <div class="col-sm-6">
+                    <input type="text" class="form-control" id="createTime" placeholder="User createTime" ng-model="user.createTime">
+                  </div>
+              </div>
+              <div class="row mb-3" ng-hide="!isEditable">
+                  <label for="updateTime" class="col-sm-4 col-form-label">Update Time</label>
+                  <div class="col-sm-6">
+                    <input type="text" class="form-control" id="updateTime" placeholder="User updateTime" ng-model="user.updateTime">
+                  </div>
+              </div>
+            </div>
+            
+            <div class="col-md-6">
+              <div class="row mb-3">
+                <label for="memberId" class="col-sm-4 col-form-label">Member ID</label>
+                <div class="col-sm-6">
+                  <input type="text" class="form-control" id="memberId" placeholder="Member ID" ng-model="user.personDTO.id">
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label for="firstName" class="col-sm-4 col-form-label">First Name</label>
+                <div class="col-sm-6">
+                  <input type="text" class="form-control" id="firstName" placeholder="Member first name" ng-model="user.personDTO.firstName">
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label for="lastName" class="col-sm-4 col-form-label">Last Name</label>
+                <div class="col-sm-6">
+                  <input type="text" class="form-control" id="lastName" placeholder="Member last name" ng-model="user.personDTO.lastName">
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label for="email" class="col-sm-4 col-form-label">Email</label>
+                <div class="col-sm-6">
+                  <input type="email" class="form-control" id="email" placeholder="Member email" ng-model="user.personDTO.email">
+                </div>
+              </div>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="username">Username</label>
-            <input type="text" name="username" id="username" placeholder="User username" ng-model="user.username">
-        </div>
-        <div class="form-group" ng-hide="isEditable">
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password" placeholder="User password" ng-model="user.password">
-        </div>
-        <div class="form-group">
-            <label for="role">Role</label>
-            <input type="text" name="role" id="role" placeholder="User role" ng-model="user.role">
-        </div>
-        </div>
-        <div class="form-group">
-            <label for="role">Enabled</label>
-            <input type="text" name="enabled" id="enabled" placeholder="User enabled" ng-model="user.enabled">
-        </div>
-        <div class="form-group" ng-hide="!isEditable">
-            <label for="createTime">Create Time</label>
-            <input type="text" name="createTime" id="createTime" placeholder="User createTime" ng-model="user.createTime">
-        </div>
-        <div class="form-group" ng-hide="!isEditable">
-            <label for="updateTime">Update Time</label>
-            <input type="text" name="updateTime" id="updateTime" placeholder="User updateTime" ng-model="user.updateTime">
-        </div>
+        
         <button class="btn btn-info" ng-hide="!isEditable" ng-click="saveUser()">Edit</button>
     </form>
 </div>

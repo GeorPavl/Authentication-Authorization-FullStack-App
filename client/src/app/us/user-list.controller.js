@@ -18,6 +18,7 @@
             userService.getUsers().$promise
                 .then(function(response) {
                     $scope.users = response;
+                    console.log($scope.users);
                 })
                 .catch(function(error) {
                     console.log(error);

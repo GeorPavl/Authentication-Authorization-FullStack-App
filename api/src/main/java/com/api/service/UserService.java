@@ -21,4 +21,6 @@ public interface UserService {
     Optional<User> findByUsername(String username);
 
     Long count();
+
+    Boolean checkEncodedPassword(String encodedPassword, String password);
 }

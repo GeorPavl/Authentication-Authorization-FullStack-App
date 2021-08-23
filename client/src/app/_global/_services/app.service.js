@@ -25,51 +25,6 @@
             $rootScope.user = {};
             $rootScope.authenticated = false;
             
-            // $transitions.onStart({
-            //     to: 'loginCallback'
-            // }, function(transition) {
-            //     if (!ssoService.loginCallback($location.absUrl())) {
-            //         transition.abort();
-            //         $state.transitionTo("app.home");
-            //     }
-            //     else {
-            //         ssoService.getUserInfo().then(function successCallback() {
-            //             userService.getUserData().then(function successCallback() {
-            //                 transition.abort();
-            //                 $state.transitionTo("app.home");
-            //             }).catch(function errorCallback() {
-            //                 authService.logout();
-            //             });
-            //         }).catch(function errorCallback() {
-            //             authService.logout();
-            //         });
-            //     }
-            // });
-            
-            // $transitions.onStart({
-            //     to: function(state) {
-            //         return state.data != null && state.data.authRequired === true;
-            //     }
-            // }, function(transition) {
-            //     //TODO - Να βγει από σχόλια ώστε να παίζει το authentication!
-            //     //if (authService.isLoggedInWithUserStorage()) {
-            //     //    if (userService.hasUserCemeteriesStorage()) {
-            //     //        if (!authService.userHasPermission(transition.$to().data.permissions) || !authService.userHasPermission(['internal_user'])) {
-            //     //            transition.abort();
-            //     //            $state.transitionTo("app.403");
-            //     //        }
-            //     //    }
-            //     //    else {
-            //     //        transition.abort();
-            //     //        $state.transitionTo("app.home");
-            //     //    }
-            //     //}
-            //     //else {
-            //     //    transition.abort();
-            //     //    $state.transitionTo("app.home");
-            //     //}
-            // });
-            
             /**
              * HTML title
              */
@@ -86,37 +41,6 @@
                 }
             });
             
-            
-            /**
-             * Spinner
-             */
-            // $transitions.onStart({}, function() {
-            //     $rootScope.showSpinner = true;
-            // });
-            
-            // $transitions.onSuccess({}, function() {
-            //     $rootScope.showSpinner = false;
-            //     Layout.setAngularJsSidebarMenuActiveLink('match', null, $state); // activate selected link in the sidebar menu
-                
-            //     // auto scorll to page top
-            //     setTimeout(function() {
-            //         App.scrollTop(); // scroll to the top on content load
-            //     }, $rootScope.settings.layout.pageAutoScrollOnLoad);
-            // });
-            
-            // $transitions.onError({}, function(transition) {
-            //     $rootScope.showSpinner = false;
-            //     let rejection = transition.error();
-            //     if (rejection.type === 6){
-            //         if (rejection.detail.status === -1 || rejection.detail.status === 401) {
-            //             $location.path('/401');
-            //         }
-            //         else if (rejection.detail.status === 403) {
-            //             toitsuToasterService.httpClientError(403);
-            //         }
-            //     }
-            // });
-            
             /**
              * Toaster
              */
@@ -130,34 +54,6 @@
             //         'toast-warning': 8000,
             //         'toast-error': 10000
             //     }
-            // };
-            
-            // /**
-            //  * Chosen
-            //  */
-            // $rootScope.chosenAttrs = {
-            //     allow_single_deselect: true,
-            //     search_contains: true,
-            //     no_results_text: ' ',
-            //     placeholder_text_multiple: 'Επιλέξτε...',
-            //     placeholder_text_single: 'Επιλέξτε...'
-            // };
-            
-            // /**
-            //  * BlockUI options
-            //  */
-            // App.blockUIOptions = {
-            //     animate: true,
-            //     overlayColor: 'black'
-            // };
-            
-            // /**
-            //  * Μέθοδος για αλλαγή της κατάστασης μιας boolean μεταβλητής του δεδομένου scope μεταξύ true και false
-            //  */
-            // $rootScope.toggleDisplayVar = function(scope, event, displayVar) {
-            //     event.stopPropagation();
-            //     event.preventDefault();
-            //     scope[displayVar] = !scope[displayVar];
             // };
             
             /**
@@ -184,11 +80,6 @@
             $rootScope.scrollToBottom = function() {
                 $('html, body').animate({scrollTop: $(document).height()}, 500);
             };
-            
-            // angular.element(document).ready(function() {
-            //     $('body').removeClass('page-on-load'); // remove page loading indicator
-            //     App.runResizeHandlers(); //Make the side menu scrollbar appear if needed
-            // });
             
         }
         

@@ -1,0 +1,59 @@
+<div class="container">
+    <form class="form-horizontal" ng-submit="submitStudnetForm()" role="form" name="studentForm" novalidate>
+        <div class="form-group" ng-class="{'has-error': studentForm.firstName.$touched && studentForm.firstName.$error.required , 'has-success': studentForm.firstName.$valid }">
+            <label for="firstName" class="col-sm-3 control-label">First Name</label>
+            <div class="col-sm-6">
+                <input type="text" id="firstName" name="firstName" class="form-control" ng-model="firstName" required />
+            </div>
+            
+            <div class="col-sm-6">
+                <div class="alert alert-danger" style="margin-top: 5%;" ng-show="studentForm.firstName.$touched && studentForm.firstName.$error.required">
+                    Please enter first name.
+                </div>
+            </div>
+            
+        </div>
+        <div class="form-group" ng-class="{'has-error': studentForm.lastName.$touched && studentForm.lastName.$error.required ,  'has-success': studentForm.lastName.$valid}">
+            <label for=" lastname" class="col-sm-3 control-label">
+                Last Name
+            </label>
+            <div class="col-sm-6">
+                <input type="text" id="lastName" name="lastName" class="form-control" ng-model="lastName" required />
+            </div>
+            <div class="col-sm-6">
+                <div class="alert alert-danger" style="margin-top: 5%;" ng-show="studentForm.lastName.$touched && studentForm.lastName.$error.required">
+                    Please enter last name.
+                </div>
+            </div>
+        </div>
+        <div class="form-group" ng-class="{'has-error': studentForm.lastName.$touched && studentForm.lastName.$error.required ,  'has-success': studentForm.lastName.$valid}">
+            <label for=" lastname" class="col-sm-3 control-label">
+                Last Name Confirm
+            </label>
+            <div class="col-sm-6">
+                <input type="text" id="lastNameConfirm" name="lastNameConfirm" class="form-control" ng-model="lastNameConfirm" ng-pattern="lastName" required />
+            </div>
+            <div class="col-sm-6">
+                <div class="alert alert-danger" style="margin-top: 5%;" ng-show="studentForm.lastNameConfirm.$touched && studentForm.lastNameConfirm.$error.required">
+                    Please cpnfirm your last name.
+                </div>
+                <div class="alert alert-danger" style="margin-top: 5%;" ng-show="studentForm.lastNameConfirm.$error.pattern">
+                    Your inputs don't match.
+                </div>
+            </div>
+        </div>
+        <div class="form-group" ng-class="{'has-error': studentForm.emailId.$touched && studentForm.emailId.$error.email , 'has-success': studentForm.emailId.$valid}">
+            <label for="dob" class="col-sm-3 control-label">Email</label>
+            <div class="col-sm-6">
+                <input type="email" id="dob" name="emailId" class="form-control" ng-model="email" ng-required="true"/>
+            </div>
+            <div class="col-sm-3">
+                <span class="help-block" ng-show="studentForm.emailId.$touched && studentForm.emailId.$error.email">Please enter valid email.</span>
+                <span class="help-block" ng-show="studentForm.emailId.$touched && studentForm.emailId.$error.required">Email Required</span>
+            </div>
+        </div>
+
+        <input type="submit" ng-disabled="!studentForm.$valid" value="Save" class="btn btn-primary col-sm-offset-3" />
+        <input type="button" ng-hide="!studentForm.$dirty" value="Reset" class="btn" />
+    </form>
+</div>

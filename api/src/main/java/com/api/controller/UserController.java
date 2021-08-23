@@ -53,4 +53,10 @@ public class UserController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    @GetMapping("/user/check-pass")
+    public Boolean checkUserPassword(@RequestParam String password, @RequestParam Long id) {
+        UserDTO userDTO = new UserDTO(userService.get(id));
+        return userService.checkEncodedPassword(userDTO.getPassword(), password);
+    }
+
 }

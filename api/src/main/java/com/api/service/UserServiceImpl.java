@@ -6,7 +6,7 @@ import com.api.model.User;
 import com.api.repository.UserRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,9 +19,6 @@ public class UserServiceImpl implements UserService{
     private UserRepository userRepository;
     @Autowired
     private PersonService personService;
-
-    @Autowired
-    private PasswordEncoder passwordEncoder;
 
     @Override
     public User dtoToEntity(UserDTO userDTO) {
@@ -50,10 +47,9 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public User save(UserDTO userDTO) {
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         User user = dtoToEntity(userDTO);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setRole("ROLE_USER");
-        user.setEnabled(true);
         return userRepository.save(user);
     }
 
@@ -70,5 +66,12 @@ public class UserServiceImpl implements UserService{
     @Override
     public Long count() {
         return userRepository.count();
+    }
+
+    @Override
+    public Boolean checkEncodedPassword(String encodedPassword, String password) {
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        Boolean isPasswordMatch = passwordEncoder.matches(password, encodedPassword);
+        return isPasswordMatch;
     }
 }

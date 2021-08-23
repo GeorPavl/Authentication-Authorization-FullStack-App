@@ -10,10 +10,15 @@
             $scope.credentials = null;
         }
 
+        $scope.goToHomePage = function() {
+            $state.go('app.home');
+        }
+
         $scope.loginUser = function() {
             authService.authenticate($scope.credentials, function() {
                 var user = JSON.parse(localStorage.getItem('user'));
                 if (user) {
+                    // Να φτιάξω μία μέθοδο για να ελέγγχει τον ρόλο
                     if (user.role === "ROLE_ADMIN") {
                         $state.go('app.admin-dashboard.index');
                     } else {

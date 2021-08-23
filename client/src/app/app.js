@@ -2,6 +2,7 @@
     
     angular.module('app', [
         'ui.router',
+        'ui.bootstrap',
         'ngAnimate',
         'ngResource',
         'pascalprecht.translate',
@@ -12,6 +13,7 @@
         'app.config',
         'app.global',
         'app.home',
+        'app.examples',
         'app.admin-dashboard',
         'app.user-dashboard',
         'app.us'
